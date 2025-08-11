@@ -66,7 +66,7 @@ func (g *GameState) updateStatus() {
 	// Lives and score on same line
 	g.Status.ColorOn(int16(ColorPacman))
 	for i := 0; i < g.Lives; i++ {
-		g.Status.Print("P ")
+		g.Status.Print("C ")
 	}
 	g.Status.ColorOn(int16(ColorNormal))
 	g.Status.Print(fmt.Sprintf("     Score: %d", g.Points))
