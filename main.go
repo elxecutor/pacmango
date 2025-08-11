@@ -1,7 +1,7 @@
 package main
 
 import (
-	"flag"
+	"embed"
 	"fmt"
 	"os"
 	"time"
@@ -9,11 +9,10 @@ import (
 	"github.com/rthornton128/goncurses"
 )
 
-func main() {
-	var levelPath string
-	flag.StringVar(&levelPath, "level", "data/level.dat", "Path to level data file")
-	flag.Parse()
+//go:embed data/*
+var EmbeddedAssets embed.FS
 
+func main() {
 	game := NewGameState()
 
 	if err := initCurses(); err != nil {
@@ -28,8 +27,9 @@ func main() {
 	// Show intro screen
 	game.introScreen()
 
-	if err := game.loadLevel(levelPath); err != nil {
-		exitProgram(fmt.Sprintf("Cannot find level file: %s", levelPath))
+	// Load embedded level
+	if err := game.loadLevel("data/level.dat"); err != nil {
+		exitProgram("Error loading embedded level data")
 	}
 
 	game.Invincible = false
