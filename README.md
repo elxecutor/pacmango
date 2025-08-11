@@ -1,6 +1,11 @@
 <h1 align="center">pacmango</h1> 
 <p align="center">
-Classic Pacman game for the terminal, written in Go</p>
+Classic pacman for the terminal, written in Go
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/7e77bd1e-e825-42be-8dba-e5edc2923787" width="70%" alt="pacmango gameplay demo" />
+</p>
 
 ---
 
