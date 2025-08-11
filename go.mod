@@ -1,4 +1,4 @@
-module pacmango
+module github.com/ashish0kumar/pacmango
 
 go 1.23.2
 
