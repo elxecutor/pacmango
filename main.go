@@ -66,17 +66,21 @@ func initCurses() error {
 
 	goncurses.UseDefaultColors()
 
+	if goncurses.CanChangeColor() {
+		goncurses.InitColor(goncurses.C_BLUE, 0, 0, 500)
+	}
+
 	// Initialize color pairs
 	goncurses.InitPair(ColorNormal, goncurses.C_WHITE, -1)
 	goncurses.InitPair(ColorWall, goncurses.C_BLUE, goncurses.C_BLUE)
 	goncurses.InitPair(ColorPellet, goncurses.C_YELLOW, -1)
-	goncurses.InitPair(ColorPowerup, goncurses.C_WHITE, -1)
+	goncurses.InitPair(ColorPowerup, goncurses.C_RED, -1)
 	goncurses.InitPair(ColorGhostWall, goncurses.C_CYAN, -1)
 	goncurses.InitPair(ColorGhost1, goncurses.C_RED, -1)
 	goncurses.InitPair(ColorGhost2, goncurses.C_CYAN, -1)
 	goncurses.InitPair(ColorGhost3, goncurses.C_MAGENTA, -1)
 	goncurses.InitPair(ColorGhost4, goncurses.C_YELLOW, -1)
-	goncurses.InitPair(ColorBlueGhost, goncurses.C_BLACK, goncurses.C_BLUE)
+	goncurses.InitPair(ColorBlueGhost, goncurses.C_WHITE, goncurses.C_BLUE)
 	goncurses.InitPair(ColorPacman, goncurses.C_YELLOW, -1)
 	goncurses.InitPair(ColorCursor, goncurses.C_BLUE, goncurses.C_YELLOW)
 
