@@ -1,0 +1,77 @@
+<h1 align="center">pacmango</h1> 
+<p align="center">
+Classic Pacman game for the terminal, written in Go</p>
+
+---
+
+## Features
+
+- **Authentic Pacman gameplay** with pellets, power-ups, ghosts, and scoring
+- **Smooth continuous movement** with pending direction system for responsive controls
+- **Intelligent ghost AI** that chases and flees based on power-up state
+- **Terminal-optimized UI** using goncurses
+- **Embedded level data** - single self-contained binary with no external dependencies
+- **Cross-platform compatibility** - runs anywhere Go runs
+
+## Installation
+
+### Via `go install`
+
+```bash
+go install github.com/ashish0kumar/pacmango@latest
+```
+
+### Build from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/ashish0kumar/pacmango.git
+cd pacmango
+
+# Build the application
+go build
+
+# Move to a directory in your PATH
+sudo mv pacmango /usr/local/bin/
+```
+
+## Usage
+
+```bash
+# Start the game
+pacmango
+```
+
+### Controls
+
+- **Arrow Keys** or **WASD**: Move Pacman
+- **P**: Pause/unpause the game
+- **Q**: Quit the game
+
+### Gameplay
+
+- Eat all pellets (`.`) to complete the level
+- Power-ups (`*`) make you invincible and allow you to eat ghosts
+- Avoid ghosts unless you're invincible
+- Score points by eating pellets and ghosts
+
+## Acknowledgements
+
+- Original Pacman by Namco
+- [goncurses](https://github.com/rthornton128/goncurses) for terminal UI capabilities
+
+## Contributing
+
+Contributions are welcome! If you have ideas for improvements or bug reports, please feel free to open an issue or submit a pull request.
+
+<br>
+
+<p align="center"> 
+<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" alt="catppuccin" />
+</p>
+<p align="center">
+    <i><code>&copy 2025-present <a href="https://github.com/ashish0kumar">Ashish Kumar</a></code></i>
+</p>
+<div align="center">
+<a href="https://github.com/ashish0kumar/pacmango/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ashish0kumar/pacmango?style=for-the-badge&color=CBA6F7&logoColor=cdd6f4&labelColor=302D41" alt="LICENSE"></a>&nbsp;&nbsp;
+</div>
