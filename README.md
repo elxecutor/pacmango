@@ -12,10 +12,10 @@ Classic pacman for the terminal, written in Go
 ## Features
 
 - **Authentic Pacman gameplay** with pellets, power-ups, ghosts, and scoring
+- **9 challenging levels** with progressive difficulty and unique maze layouts
 - **Smooth continuous movement** with pending direction system for responsive controls
 - **Intelligent ghost AI** that chases and flees based on power-up state
 - **Terminal-optimized UI** using goncurses
-- **Embedded level data** - single self-contained binary with no external dependencies
 - **Cross-platform compatibility** - runs anywhere Go runs
 
 ## Installation
@@ -45,6 +45,9 @@ sudo mv pacmango /usr/local/bin/
 ```bash
 # Start the game
 pacmango
+
+# Start from a specific level
+pacmango --level 5
 ```
 
 ### Controls
