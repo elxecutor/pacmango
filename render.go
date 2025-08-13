@@ -46,9 +46,8 @@ func (g *GameState) drawWindow() {
 	} else {
 		// Draw vulnerable ghosts
 		g.Win.ColorOn(int16(ColorBlueGhost))
-		timeChar := goncurses.Char('0' + rune(g.TimeLeft))
 		for i := range g.Ghosts {
-			g.Win.MoveAddChar(g.Ghosts[i].Pos.Y, g.Ghosts[i].Pos.X, timeChar)
+			g.Win.MoveAddChar(g.Ghosts[i].Pos.Y, g.Ghosts[i].Pos.X, '&')
 		}
 	}
 

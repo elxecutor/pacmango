@@ -70,6 +70,7 @@ type GameState struct {
 	Invincible   bool
 	Food         int
 	LevelNumber  int
+	CurrentLevel int
 	GhostsInARow int
 	TimeLeft     int
 	Points       int
@@ -77,6 +78,7 @@ type GameState struct {
 	FreeLife     int
 	HowSlow      int
 	SpeedOfGame  int
+	TickCounter  int
 
 	Win    *goncurses.Window
 	Status *goncurses.Window

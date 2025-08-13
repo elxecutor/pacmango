@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"flag"
 	"fmt"
 	"os"
 	"time"
@@ -9,10 +10,21 @@ import (
 	"github.com/rthornton128/goncurses"
 )
 
-//go:embed data/*
-var EmbeddedAssets embed.FS
+//go:embed levels/*
+var levelsFS embed.FS
 
 func main() {
+	var startLevel int
+
+	flag.IntVar(&startLevel, "level", 1, "Start from specific level (1-9)")
+	flag.Parse()
+
+	// Validate level range (1-9)
+	if startLevel < 1 || startLevel > 9 {
+		fmt.Fprintf(os.Stderr, "Invalid level: %d. Must be between 1-9\n", startLevel)
+		os.Exit(1)
+	}
+
 	game := NewGameState()
 
 	if err := initCurses(); err != nil {
@@ -23,19 +35,29 @@ func main() {
 
 	checkScreenSize()
 	game.createWindows()
-
-	// Show intro screen
 	game.introScreen()
 
-	// Load embedded level
-	if err := game.loadLevel("data/level.dat"); err != nil {
-		exitProgram("Error loading embedded level data")
+	// Play from start level through all remaining levels until game over
+	for level := startLevel; level <= 9; level++ {
+		game.CurrentLevel = level
+
+		if err := game.loadLevel(level); err != nil {
+			exitProgram(fmt.Sprintf("Error loading level %d", level))
+		}
+
+		game.Invincible = false
+		game.mainLoop()
+
+		if game.Lives < 0 {
+			exitProgram("Game Over!")
+		}
+
+		// Level completed
+		game.Points += 1000
+		game.showLevelComplete()
 	}
 
-	game.Invincible = false
-	game.mainLoop()
-
-	exitProgram("Level cleared!")
+	exitProgram("All levels completed! You are the ultimate Pacman champion!")
 }
 
 // NewGameState creates a new game state with default values

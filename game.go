@@ -171,7 +171,7 @@ func (g *GameState) movePacman() {
 		if g.GhostsInARow == 0 {
 			g.GhostsInARow = 1
 		}
-		g.TimeLeft = 11 - g.LevelNumber
+		g.TimeLeft = 16 - g.LevelNumber
 	}
 
 	// Handle invincibility timer
@@ -351,4 +351,14 @@ func (g *GameState) pauseGame() {
 		}
 		time.Sleep(10 * time.Millisecond)
 	}
+}
+
+func (g *GameState) showLevelComplete() {
+	g.Win.ColorOn(int16(ColorPacman))
+	g.Win.MovePrint(12, 6, "********************")
+	g.Win.MovePrint(13, 6, fmt.Sprintf("   LEVEL %d COMPLETE!   ", g.CurrentLevel))
+	g.Win.MovePrint(14, 6, "********************")
+	g.Win.Refresh()
+
+	delay(2000)
 }

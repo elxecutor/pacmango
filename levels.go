@@ -3,19 +3,27 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func (g *GameState) loadLevel(filename string) error {
-	file, err := os.Open(filename)
-	if err != nil {
-		return fmt.Errorf("loading level %s: %w", filename, err)
-	}
-	defer file.Close()
+func (g *GameState) loadLevel(levelNum int) error {
+	filename := fmt.Sprintf("levels/level%d.txt", levelNum)
 
-	// Reset game state
+	// Use embedded file system
+	data, err := levelsFS.ReadFile(filename)
+	if err != nil {
+		return fmt.Errorf("loading level %d: %w", levelNum, err)
+	}
+
+	return g.parseLevel(string(data))
+}
+
+func (g *GameState) parseLevel(levelData string) error {
+	reader := strings.NewReader(levelData)
+	scanner := bufio.NewScanner(reader)
+
+	// Reset game state for new level
 	g.Food = 0
 	g.PendingDir = Direction{}
 
@@ -36,8 +44,7 @@ func (g *GameState) loadLevel(filename string) error {
 		g.Ghosts[i].Color = ghostColors[i]
 	}
 
-	scanner := bufio.NewScanner(file)
-
+	// Parse level data
 	for y := 0; y < LevelHeight && scanner.Scan(); y++ {
 		line := scanner.Text()
 		fields := strings.Fields(line)
@@ -80,7 +87,11 @@ func (g *GameState) loadLevel(filename string) error {
 	if scanner.Scan() {
 		if num, err := strconv.Atoi(strings.TrimSpace(scanner.Text())); err == nil {
 			g.LevelNumber = num
+		} else {
+			g.LevelNumber = g.CurrentLevel
 		}
+	} else {
+		g.LevelNumber = g.CurrentLevel
 	}
 
 	// Save starting positions
