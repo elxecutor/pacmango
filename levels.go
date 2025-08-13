@@ -8,15 +8,12 @@ import (
 )
 
 func (g *GameState) loadLevel(levelNum int) error {
-	filename := fmt.Sprintf("levels/level%d.txt", levelNum)
-
-	// Use embedded file system
-	data, err := levelsFS.ReadFile(filename)
-	if err != nil {
-		return fmt.Errorf("loading level %d: %w", levelNum, err)
+	data, exists := levelData[levelNum]
+	if !exists {
+		return fmt.Errorf("level %d not found", levelNum)
 	}
 
-	return g.parseLevel(string(data))
+	return g.parseLevel(data)
 }
 
 func (g *GameState) parseLevel(levelData string) error {

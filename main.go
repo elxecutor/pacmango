@@ -1,7 +1,6 @@
 package main
 
 import (
-	"embed"
 	"flag"
 	"fmt"
 	"os"
@@ -9,9 +8,6 @@ import (
 
 	"github.com/rthornton128/goncurses"
 )
-
-//go:embed levels/*
-var levelsFS embed.FS
 
 func main() {
 	var startLevel int

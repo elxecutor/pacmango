@@ -355,9 +355,9 @@ func (g *GameState) pauseGame() {
 
 func (g *GameState) showLevelComplete() {
 	g.Win.ColorOn(int16(ColorPacman))
-	g.Win.MovePrint(12, 6, "********************")
-	g.Win.MovePrint(13, 6, fmt.Sprintf("   LEVEL %d COMPLETE!   ", g.CurrentLevel))
-	g.Win.MovePrint(14, 6, "********************")
+	g.Win.MovePrint(12, 4, "                    ")
+	g.Win.MovePrint(13, 4, fmt.Sprintf("  LEVEL %d COMPLETE   ", g.CurrentLevel))
+	g.Win.MovePrint(14, 4, "                    ")
 	g.Win.Refresh()
 
 	delay(2000)
