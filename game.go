@@ -10,6 +10,8 @@ import (
 )
 
 func (g *GameState) mainLoop() {
+	// Load high score at start
+	g.HighScore = LoadHighScore()
 	g.drawWindow()
 	g.Win.Refresh()
 	g.Status.Refresh()
@@ -40,9 +42,20 @@ func (g *GameState) mainLoop() {
 			g.FreeLife *= 2
 		}
 
+		// Update high score if needed
+		if g.Points > g.HighScore {
+			g.HighScore = g.Points
+			SaveHighScore(g.HighScore)
+		}
+
 		g.gameDelay()
 	}
 
+	// Final high score check
+	if g.Points > g.HighScore {
+		g.HighScore = g.Points
+		SaveHighScore(g.HighScore)
+	}
 	g.drawWindow()
 	delay(1000)
 }

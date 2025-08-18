@@ -82,4 +82,5 @@ type GameState struct {
 
 	Win    *goncurses.Window
 	Status *goncurses.Window
+	HighScore   int // Track high score
 }

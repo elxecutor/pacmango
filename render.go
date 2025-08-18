@@ -59,8 +59,8 @@ func (g *GameState) drawWindow() {
 }
 
 func (g *GameState) updateStatus() {
+	g.Status.Erase() // Fully clear window
 	g.Status.Move(0, 0)
-	g.Status.ClearToEOL()
 
 	// Lives and score on same line
 	g.Status.ColorOn(int16(ColorPacman))
@@ -68,7 +68,7 @@ func (g *GameState) updateStatus() {
 		g.Status.Print("C ")
 	}
 	g.Status.ColorOn(int16(ColorNormal))
-	g.Status.Print(fmt.Sprintf("     Score: %d", g.Points))
+	g.Status.Print(fmt.Sprintf("     Score: %d  High Score: %d", g.Points, g.HighScore))
 	g.Status.Refresh()
 }
 
